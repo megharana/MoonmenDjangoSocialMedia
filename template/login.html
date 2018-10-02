@@ -1,11 +1,36 @@
-{% block content %}
-  <h2>Login</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-  </form>
-   <br>
-  <p><strong>-- OR --</strong></p>
-  <a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a><br>
-{% endblock %}
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous"> 
+	<title>LOGIN</title>
+</head>
+<body>
+	{% block content %}
+  	 <nav>
+	    <div class="nav-wrapper">
+		     <a href="#!" class="brand-logo"><i class="material-icons">cloud</i>Logo</a>
+		     <ul class="right hide-on-med-and-down">
+		        <li><a href="sass.html"><i class="material-icons">search</i></a></li>
+		        <li><a href="badges.html"><i class="material-icons">view_module</i></a></li>
+		        <li><a href="collapsible.html"><i class="material-icons">refresh</i></a></li>
+		        <li><a href="mobile.html"><i class="material-icons">more_vert</i></a></li>
+	      	</ul>
+	    </div>
+	</nav>
+  	<form method="post">
+	    {% csrf_token %}
+	    {{ form.as_p }}
+    	<!-- <button type="submit">Login</button> -->
+  	</form>
+	   	<br>
+	  	<p><strong>-- OR --</strong></p>
+  		<a class="waves-effect waves-light btn social google" href="{% url 'social:begin' 'google-oauth2' %}"><i class="fa fa-google"></i> Sign in with Google</a><br>
+	{% endblock %}
+</body>
+</html>
