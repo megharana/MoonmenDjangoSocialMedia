@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
 
     'allauth.socialaccount.providers.facebook',
+    'django_extensions',
 ]
 
 SITE_ID = 1
@@ -64,7 +65,7 @@ ROOT_URLCONF = 'SocialMedia.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['template'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -139,5 +140,7 @@ AUTHENTICATION_BACKENDS = (
     'social_core.backends.github.GithubOAuth2', 
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
-
 )
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='613712088762-relk9b0r2iu0rfv0th03l0huklp7f2lh.apps.googleusercontent.com'  #Paste CLient Key
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'aJBIBXXVww271CKjOAxsryEk' #Paste Secret Key

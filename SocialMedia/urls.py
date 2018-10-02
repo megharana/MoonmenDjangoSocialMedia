@@ -17,12 +17,13 @@ from django.conf.urls import url
 from django.conf.urls import include
 from django.contrib import admin
 from django.urls import path
+from socialAuth import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^accounts/', include('allauth.urls')),
-    #url(r'^login/$', views.login, name='login'),
-    # url(r'^logout/$', views.logout, name='logout'),
-    # url(r'^auth/', include('social_django.urls', namespace='social')),  # <- Here
-    # url(r'^$', home, name='home'),
+    url(r'^login/$', views.login, name='login'),
+    #url(r'^logout/$', views.logout, name='logout'),
+    url(r'^auth/', include('social_django.urls', namespace='social')),  # <- Here
+    url(r'^$', views.home, name='home'),
 ]
