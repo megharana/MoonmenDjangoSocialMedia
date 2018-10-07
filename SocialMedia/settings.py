@@ -9,14 +9,14 @@ https://docs.djangoproject.com/en/2.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
 """
-
+from corsheaders.defaults import default_headers
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = 'home'
+# LOGIN_URL = 'login'
+# LOGIN_REDIRECT_URL = 'home'
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
@@ -39,22 +39,45 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    'social_django',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
+    # 'social_django',
+    'rest_framework',
+    'corsheaders',
+    # 'allauth',
+    # 'allauth.account',
+    # 'allauth.socialaccount',
 
-    'allauth.socialaccount.providers.facebook',
+    # 'allauth.socialaccount.providers.facebook',
     'django_extensions',
 ]
 
 SITE_ID = 1
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ALLOW_HEADERS = default_headers + (
+    'access-control-allow-headers', 
+    'Access-Control-Allow-Origin',
+    'Access-Control-Allow-Headers', 
+    'Origin, X-Requested-With', 
+    'Content-Type', 
+    'CORRELATION_ID'
+)
+
+CORS_ALLOW_METHODS = (
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+)
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'corsheaders.middleware.CorsPostCsrfMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -88,8 +111,12 @@ WSGI_APPLICATION = 'SocialMedia.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'socialmedia',
+        'USER': 'postgres',
+        'PASSWORD': 'a',
+        'HOST': '127.0.0.1',
+        'PORT': '',
     }
 }
 
@@ -133,14 +160,12 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 AUTHENTICATION_BACKENDS = (
-    'social_core.backends.open_id.OpenIdAuth',  # for Google authentication
-    'social_core.backends.google.GoogleOpenId',  # for Google authentication
-    'social_core.backends.google.GoogleOAuth2',  # for Google authentication
-    
-    'social_core.backends.github.GithubOAuth2', 
+    # 'social_core.backends.open_id.OpenIdAuth',  # for Google authentication
+    # 'social_core.backends.google.GoogleOpenId',  # for Google authentication
+    # 'social_core.backends.google.GoogleOAuth2',  # for Google authentication 
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='613712088762-relk9b0r2iu0rfv0th03l0huklp7f2lh.apps.googleusercontent.com'  #Paste CLient Key
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'aJBIBXXVww271CKjOAxsryEk' #Paste Secret Key
+# SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='613712088762-relk9b0r2iu0rfv0th03l0huklp7f2lh.apps.googleusercontent.com'  #Paste CLient Key
+# SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'aJBIBXXVww271CKjOAxsryEk' #Paste Secret Key
